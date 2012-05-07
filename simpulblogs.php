@@ -70,7 +70,6 @@ class SimpulBlogs extends WP_Widget
 			if( !in_array("post", (array)$query['post_type'] ) ) $query['post_type'][] = "post";
 			$query['category'] = implode( ",", (array) $categories );
 		endif;
-		$query['post_status'] = 'published';
 		
 		//var_dump($query); // For Debugging
 		
