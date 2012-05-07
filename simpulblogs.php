@@ -4,12 +4,12 @@
  */
 /*
 Plugin Name: Simpul Blogs by Esotech
-Plugin URI: http://www.esotech.org/plugins/simpul/simpul-blogs/
+Plugin URI: http://www.esotech.org
 Description: This plugin is designed to access a blog category feed and display it in a Wordpress Widget with featured image and standard info.
 Version: 1.0
 Author: Alexander Conroy
 Author URI: http://www.esotech.org/people/alexander-conroy/
-License: GPLv2+
+License: Commercial
 */
 
 
@@ -73,7 +73,7 @@ class SimpulBlogs extends WP_Widget
 		
 		//var_dump($query); // For Debugging
 		
-		$posts = new WP_Query($query);
+		$simpul_query = new WP_Query($query);
 	
 		if($instance['class']):
 			$ul_class = ' class="' . $instance['class'] . '"';
@@ -81,7 +81,7 @@ class SimpulBlogs extends WP_Widget
 		
 		echo '<ul' . $ul_class . '>';
 		
-		while($posts->have_posts()): $posts->the_post();
+		while($simpul_query->have_posts()): $simpul_query->the_post();
 			//$do_not_duplicate = $post->ID;
 			$the_link = get_permalink();
 
@@ -247,7 +247,7 @@ class SimpulBlogs extends WP_Widget
 			echo '</li>';
 			
 		endwhile;
-		
+		wp_reset_postdata();
 		echo '</ul>';
 		echo $widget;
 		
