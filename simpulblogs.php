@@ -6,7 +6,7 @@
 Plugin Name: Simpul Blogs by Esotech
 Plugin URI: http://www.esotech.org
 Description: This plugin is designed to access a blog category feed and display it in a Wordpress Widget with featured image and standard info.
-Version: 1.0
+Version: 1.1
 Author: Alexander Conroy
 Author URI: http://www.esotech.org/people/alexander-conroy/
 License: Commercial
@@ -54,14 +54,15 @@ class SimpulBlogs extends WP_Widget
 		endif;
 		
 		if($taxonomies && $terms):
-			$query['tax_query']['relation'] = "OR";
+				$query['tax_query']['relation'] = "OR";
 			foreach($taxonomies as $taxonomy):
 				$query['tax_query'][] = array('taxonomy' => $taxonomy,
-												'field' => 'name',
-												'terms' => $terms);
+												'field' => 'slug',
+												'terms' => $terms,
+												'operator' => 'IN');
 			endforeach;
 		endif;
-		
+
 		if($post_types):
 			$query['post_type'] = $post_types;
 		endif;
@@ -70,9 +71,11 @@ class SimpulBlogs extends WP_Widget
 			if( !in_array("post", (array)$query['post_type'] ) ) $query['post_type'][] = "post";
 			$query['category'] = implode( ",", (array) $categories );
 		endif;
-		
-		//var_dump($query); // For Debugging
-		
+		/*
+		echo "<pre>";
+		print_r($query); // For Debugging
+		echo "</pre>";
+		*/
 		$simpul_query = new WP_Query($query);
 	
 		if($instance['class']):
@@ -440,9 +443,9 @@ class SimpulBlogs extends WP_Widget
 					<div class="widefat" style="height: 100px; overflow-y: scroll; margin-bottom: 10px;"> '; 
 			foreach( $terms as $term ):
 			
-				if( in_array($term->name, (array)$value  ) ) $term_checked = "checked"; else $term_checked = "";
+				if( in_array($term->slug, (array)$value  ) ) $term_checked = "checked"; else $term_checked = "";
 			
-				$tax_terms .= '<input type="checkbox" name="' . $field . '[]" value="' . $term->name . '" ' . $term_checked . ' /> ' . $term->name . '<br />';
+				$tax_terms .= '<input type="checkbox" name="' . $field . '[]" value="' . $term->slug . '" ' . $term_checked . ' /> ' . $term->name . '<br />';
 			
 			endforeach;
 			$tax_terms .= '</div>
