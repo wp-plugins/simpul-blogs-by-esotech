@@ -39,6 +39,8 @@ the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1
 2. This is the second screen shot
 
 == Changelog ==
+= 1.2 = 
+* Classname is now simpul-blogs and ID is simpul_blogs
 = 1.1 = 
 * Fixed Issue with Terms not filtering Properly.
 = 1.0 =

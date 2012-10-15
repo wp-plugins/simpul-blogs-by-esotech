@@ -6,10 +6,10 @@
 Plugin Name: Simpul Blogs by Esotech
 Plugin URI: http://www.esotech.org
 Description: This plugin is designed to access a blog category feed and display it in a Wordpress Widget with featured image and standard info.
-Version: 1.1
+Version: 1.2
 Author: Alexander Conroy
 Author URI: http://www.esotech.org/people/alexander-conroy/
-License: Commercial
+License: This code is released under the GPL licence version 3 or later, available here http://www.gnu.org/licenses/gpl.txt
 */
 
 
@@ -18,7 +18,7 @@ class SimpulBlogs extends WP_Widget
 	# The ID of the twitter feed we are trying to read	
 	public function __construct()
 	{
-		$widget_ops = array('classname' => 'simpul_blogs', 
+		$widget_ops = array('classname' => 'simpul-blogs', 
 							'description' => 'A Simpul Blog Widget' );
 							
 		parent::__construct('simpul_blogs', // Base ID
