@@ -39,6 +39,8 @@ the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1
 2. This is the second screen shot
 
 == Changelog ==
+= 1.2.1 =
+* Fixed a sneaky orderby bug. Also added name (slug) to orderby options.
 = 1.2 = 
 * Classname is now simpul-blogs and ID is simpul_blogs
 = 1.1 = 

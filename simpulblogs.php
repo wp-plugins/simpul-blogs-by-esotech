@@ -6,7 +6,7 @@
 Plugin Name: Simpul Blogs by Esotech
 Plugin URI: http://www.esotech.org
 Description: This plugin is designed to access a blog category feed and display it in a Wordpress Widget with featured image and standard info.
-Version: 1.2
+Version: 1.2.1
 Author: Alexander Conroy
 Author URI: http://www.esotech.org/people/alexander-conroy/
 License: This code is released under the GPL licence version 3 or later, available here http://www.gnu.org/licenses/gpl.txt
@@ -42,7 +42,7 @@ class SimpulBlogs extends WP_Widget
 		
 		$query['post_status'] = 'publish';
 		
-		if($instance['post_orderby']) $query['orderby'] = $query['post_orderby'];
+		if($instance['post_orderby']) $query['orderby'] = $instance['post_orderby'];
 		if($instance['post_order']) $query['order'] = $instance['post_order'];
 		
 		if ( !empty( $instance['title']) ) { echo $before_title . $instance['title']. $after_title; };
@@ -353,7 +353,7 @@ class SimpulBlogs extends WP_Widget
 		echo self::formatField($this->get_field_name('title'), $this->get_field_id('title'),  $title, "Title");
 		echo self::formatField($this->get_field_name('class'), $this->get_field_id('class'),  $class, "UL Class");
 		echo self::formatField($this->get_field_name('number'), $this->get_field_id('number'), $number, "Number of blogs to be displayed");
-		echo self::formatField($this->get_field_name('post_orderby'), $this->get_field_id('post_orderby'), $post_orderby, "Order Post By", "radio", array(), array('none','ID','author','title','date','modified','parent','rand','comment_count','menu_order' ,'meta_value' ,'meta_value_num') );
+		echo self::formatField($this->get_field_name('post_orderby'), $this->get_field_id('post_orderby'), $post_orderby, "Order Post By", "radio", array(), array('none','ID','author','title', 'name','date','modified','parent','rand','comment_count','menu_order' ,'meta_value' ,'meta_value_num') );
 		echo self::formatField($this->get_field_name('post_order'), $this->get_field_id('post_order'), $post_order, "Sort", "radio", array(), array('ASC', 'DESC') );
 		echo self::formatField($this->get_field_name('taxonomies'), $this->get_field_id('taxonomies'), $taxonomies, "Taxonomies", "taxonomy");
 		echo self::formatField($this->get_field_name('terms'), $this->get_field_id('terms'), $terms, "Terms (Categories)", "term");	
